@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
-
+from product import models as PMODEL
 
 # Create your views here.
 def home_view(request):
@@ -36,4 +36,8 @@ def afterlogin_view(request):
 		return HttpResponseRedirect('admn/dashboard')
 
 def product_home_view(request):
-    return render(request, 'home/home.html')
+    categories = PMODEL.Product_category.objects.all()
+    context = {
+        'categories':categories,
+    }
+    return render(request, 'home/home.html', context)

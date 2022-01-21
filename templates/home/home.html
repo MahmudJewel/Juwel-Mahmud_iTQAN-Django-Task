@@ -2,5 +2,21 @@
 {% load static %}
 {% load widget_tweaks %}
 {% block content %}
-home
+<div class="container">
+    <h1 class="text-center m-3">Category</h1>
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-md-4 my-3">
+            <a href="#">
+                <div class="row">
+                    <img src="{{ category.image.url }}" alt="">
+                </div>
+                <div class="row">
+                    <h2>{{category.title}}</h2>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
