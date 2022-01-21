@@ -5,14 +5,20 @@
 <div class="container">
     <h1 class="text-center m-3">Category</h1>
     <div class="row">
-        {% for category in categories %}
+        {% for product in products %}
         <div class="col-md-4 my-3">
-            <a href="/product/{{category.id}}/product">
+            <a href="#">
                 <div class="row">
-                    <img src="{{ category.image.url }}" alt="">
+                    <img src="{{ product.image.url }}" alt="">
                 </div>
                 <div class="row">
-                    <h2>{{category.title}}</h2>
+                    <div></div>
+                    <h5>{{product.title}}</h5>
+                </div>
+                <div class="row">
+                    <div>
+                        <a class="btn btn-primary">Add to cart</a>
+                    </div>
                 </div>
             </a>
         </div>

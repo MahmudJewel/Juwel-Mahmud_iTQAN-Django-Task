@@ -35,7 +35,7 @@ def afterlogin_view(request):
 	else:
 		return HttpResponseRedirect('admn/dashboard')
 
-def product_home_view(request):
+def category_home_view(request):
     categories = PMODEL.Product_category.objects.all()
     context = {
         'categories':categories,

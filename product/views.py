@@ -1,6 +1,10 @@
 from django.shortcuts import render
-
+from product import models as PMODEL
 # Create your views here.
 
-# def home_view(request):
-#     return render(request, 'home/home.html')
+def categorywise_product_view(request, pk):
+    products = PMODEL.Product.objects.all()
+    context = {
+        'products':products,
+    }
+    return render(request, 'product/categorywise_product.html', context)
