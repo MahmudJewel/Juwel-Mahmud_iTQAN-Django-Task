@@ -7,7 +7,7 @@
     <div class="row">
         {% for product in products %}
         <div class="col-md-4 my-3">
-            <a href="#">
+            <a href="/product/{{product.id}}/single_product">
                 <div class="row">
                     <img src="{{ product.image.url }}" alt="">
                 </div>

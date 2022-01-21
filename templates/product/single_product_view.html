@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center m-3">Product view</h1>
+    <div class="row">
+        <div class="col-md-4 border border-primary ms-auto py-3"> 
+            <img src="{{ product.image.url }}" alt="" style="max-width: 500px; max-height: 500px;">
+         </div>
+        <div class="col-md-7 border border-success ms-auto py-3">
+            <h3>Name: {{product.title}} </h3>
+            <h4>Category: {{product.product_category}} </h4>
+            <h5>Price: 000 tk </h5>
+            <h5>Details:</h5>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia incidunt voluptatum officia asperiores perferendis nihil molestias sapiente soluta fugiat dignissimos. Facilis ea natus officiis itaque porro obcaecati illo possimus praesentium.</p>
+            <form method="">
+                <!-- Passing value in filter -->                 
+                  <button type="submit" name="addToCart" class="btn btn-primary btn-md my-0 p" >Add to cart </button>
+                
+              </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
