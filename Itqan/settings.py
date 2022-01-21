@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     
     # external app 
     'product',
+    'customer',
+    'home',
 ]
 
 MIDDLEWARE = [
