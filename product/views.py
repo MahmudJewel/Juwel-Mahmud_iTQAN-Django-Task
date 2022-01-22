@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from product import models as PMODEL
+from django.db.models import F # for page view counter 
+
 # Create your views here.
 
 def categorywise_product_view(request, pk):
@@ -13,6 +15,11 @@ def categorywise_product_view(request, pk):
 
 def single_product_view(request, pk):
     product = PMODEL.Product.objects.get(id=pk)
+    
+    # page view counter 
+    product.total_views = F('total_views')+1
+    product.save()
+    
     context = {
         'product': product,
     }
