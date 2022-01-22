@@ -39,17 +39,6 @@
         border-radius: 25px;
       }
       /* end navbar  */
-      /*Showing cart amount on navbar*/
-      #cart-total {
-        display: block;
-        text-align: center;
-        color: #fff;
-        background-color: purple;
-        width: 20px;
-        height: 25px;
-        border-radius: 50%;
-        font-size: 14px;
-      }
       /* ******************** start footer **************************** */
 .footerHeader {
   padding: 0px 0px 0px 0px;
@@ -72,8 +61,15 @@
     >
       <div class="container-fluid">
         <a class="navbar-brand ms-5" style="color: aqua" href="/"
-          >Shopping Mall</a
+          >Grocery Shop </a
         >
+        {% if user.is_authenticated %}
+        {% for category in categories %}
+        <div>
+          <a href="#">{{category.title}}</a>
+        </div>
+        {% endfor %}
+        {% endif %}
         <button
           class="navbar-toggler"
           type="button"
@@ -86,21 +82,6 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <!-- Search button  -->
-          <form class="d-flex mx-md-5" action="/search" method="get">
-            {% csrf_token %}
-            <input
-              class="form-control me-2"
-              name="search"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              value="{{search}}"
-            />
-            <button class="btn btn-outline-light px-4" type="submit">
-              Search
-            </button>
-          </form>
 
           <!-- right side -->
           <ul class="navbar-nav me-md-5 ms-md-auto mb-2 mb-lg-0">
@@ -117,7 +98,7 @@
                 >Home</a
               >
             </li>
-            {# if user.is_authenticated #}
+            {% if user.is_authenticated %}
             <li class="nav-item">
               <a
                 class="nav-link text-light
@@ -125,20 +106,7 @@
                 active 
                 {% endif %}"
                 href=""
-                >Hello </a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="
-                  nav-link
-                  {% if '/customer/order' in request.path %}
-                  active 
-                  {% endif %}
-                "
-                style="color: aqua"
-                href="/customer/order"
-                >Orders</a
+                >Hello {{user.username}} </a
               >
             </li>
             <li class="nav-item">
@@ -154,7 +122,7 @@
                 >Log out</a
               >
             </li>
-            {# else #}
+            {% else %}
             <li class="nav-item">
               <a
                 class="
@@ -181,23 +149,7 @@
                 >Log In</a
               >
             </li>
-            {# endif #}
-            <li class="nav-item">
-              <a
-                class="
-                  nav-link
-                  {% if '/cart' in request.path %}
-                  active
-                  {% endif %}
-                "
-                href="/cart"
-                ><img
-                  src="{% static 'img/cart.png' %}"
-                  height="20px"
-                  width="25px"
-              /></a>
-            </li>
-            <p id="cart-total">t cart</p>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -213,7 +165,6 @@
     </div>
     <br /><br /><br />
     <div style="min-height: 85vh;">{% block content %} {% endblock %}</div>
-    
 
     <!-- Footer -->
     <br /><br /><br />
