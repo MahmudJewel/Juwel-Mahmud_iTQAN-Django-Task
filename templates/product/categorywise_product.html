@@ -7,9 +7,9 @@
     <div class="row">
         {% for product in products %}
         <div class="col-md-4 my-3">
-            <a href="/product/{{product.id}}/single_product">
+            <a href="/product/{{product.id}}/single_product" class="text-decoration-none">
                 <div class="row">
-                    <img src="{{ product.image.url }}" alt="">
+                    <img src="{{ product.image.url }}" alt="Categorywise product" style="max-width: 250px; max-height: 200px;">
                 </div>
                 <div class="row">
                     <div></div>
