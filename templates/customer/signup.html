@@ -56,8 +56,10 @@
         </style>
 <body style="background-color: #dee9ff;">
   <div class="registration-form">
+    
     <form method="POST" autocomplete="off" enctype="multipart/form-data" class="border border-primary">
       {% csrf_token %}
+      <h2 class="text-center" >Create Account</h2>
       <div class="form-icon">
         <span><i class="fas fa-user-plus"></i></span>
       </div>
@@ -83,6 +85,7 @@
         <button type="submit" class="btn btn-block create-account">Create Account</button>
       </div>
       <br>
+      <p>Already have an account? <a href="login" class="text-decoration-none">Login</a></p>
     </form>
   </div>
 </body>

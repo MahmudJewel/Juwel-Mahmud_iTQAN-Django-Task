@@ -65,14 +65,15 @@
         </a>
         {% if user.is_authenticated %}
         <div class="col-md-2 m-auto dropdown">
-          <select
+          <select onChange="window.location.href=this.value"
             name="dropdown"
             class="custom-select btn"
             style="width: 120px; color: black; background-color: white; text-align: left;"
           >
           <option value="">Category</option>
+          <!-- I used context_processors for all pages to pass categories -->
             {% for category in categories %}
-            <option value=""><a href="#">{{category.title}}</a></option>
+            <option value="/product/{{category.id}}/product">{{category.title}}</option>
             
             {% endfor %}
           </select>
@@ -95,7 +96,7 @@
           <ul class="navbar-nav me-md-5 ms-md-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a
-                class="nav-link {% if request.path == '/' %} active {% endif %}"
+                class="nav-link {% if request.path == '/home' %} active {% endif %}"
                 style="color: aqua"
                 href="/"
                 >Home</a
@@ -120,9 +121,9 @@
             {% else %}
             <li class="nav-item">
               <a
-                class="nav-link {% if '/customer/signup' in request.path %} active {% endif %}"
+                class="nav-link {% if request.path == '/' %} active {% endif %}"
                 style="color: aqua"
-                href="/customer/signup"
+                href="/"
                 >Sign up</a
               >
             </li>

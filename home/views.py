@@ -9,7 +9,6 @@ from product import models as PMODEL
 
 # Home view ==> if authenticated show category page else signup page
 def home_view(request):
-    categories = PMODEL.Product_category.objects.all()
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
     RegisterForm = CFORM.RegisterForm()
@@ -24,7 +23,6 @@ def home_view(request):
             return redirect('login')
     context={
         'RegisterForm': RegisterForm,
-        'categories':categories,
         }
     return render(request, 'customer/signup.html',context)
 
@@ -43,6 +41,7 @@ def afterlogin_view(request):
 # category-wise product 
 @login_required(login_url='login')
 def category_home_view(request):
+    # we have used common context processor 
     categories = PMODEL.Product_category.objects.all()
     context = {
         'categories':categories,
@@ -68,3 +67,11 @@ def admin_dash_view(request):
         'product_num':product_num,
     }
     return render(request, 'admin/admin_dash.html', context)
+
+# share category for all pages 
+def common(request):
+    categories = PMODEL.Product_category.objects.all()
+    return {
+        'categories' : categories,
+    }
+    
