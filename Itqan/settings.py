@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+# from home import validators
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -106,11 +107,31 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
+    
+    
+    # added by me for custom validators 
+    # {   
+    #     'NAME' : 'home.validators.NumberValidator',
+    #     'OPTIONS': {
+    #         'min_digits': 3, }
+    # },
+    {   
+        'NAME': 'home.validators.UppercaseValidator', 
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    {   
+    'NAME': 'home.validators.LowercaseValidator',
+    },
+    {   
+    'NAME': 'home.validators.SymbolValidator', 
+    },
+    {   
+    'NAME': 'home.validators.First_digit_cannot_be_number', 
     },
 ]
 
