@@ -40,18 +40,18 @@
       }
       /* end navbar  */
       /* ******************** start footer **************************** */
-.footerHeader {
-  padding: 0px 0px 0px 0px;
-  background-color: #212529;
-  margin: 0px;
-}
-.textColor {
-  color: blanchedalmond;
-}
-/* .activestatus {
+      .footerHeader {
+        padding: 0px 0px 0px 0px;
+        background-color: #212529;
+        margin: 0px;
+      }
+      .textColor {
+        color: blanchedalmond;
+      }
+      /* .activestatus {
   background: white;
 } */
-/* ******************** end footer **************************** */
+      /* ******************** end footer **************************** */
     </style>
   </head>
   <body>
@@ -61,15 +61,24 @@
     >
       <div class="container-fluid">
         <a class="navbar-brand ms-5" style="color: aqua" href="/"
-          >Grocery Shop </a
-        >
+          >Grocery Shop
+        </a>
         {% if user.is_authenticated %}
-        {% for category in categories %}
-        <div>
-          <a href="#">{{category.title}}</a>
+        <div class="col-md-2 m-auto dropdown">
+          <select
+            name="dropdown"
+            class="custom-select btn"
+            style="width: 120px; color: black; background-color: white; text-align: left;"
+          >
+          <option value="">Category</option>
+            {% for category in categories %}
+            <option value=""><a href="#">{{category.title}}</a></option>
+            
+            {% endfor %}
+          </select>
         </div>
-        {% endfor %}
         {% endif %}
+
         <button
           class="navbar-toggler"
           type="button"
@@ -82,17 +91,11 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
           <!-- right side -->
           <ul class="navbar-nav me-md-5 ms-md-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a
-                class="
-                  nav-link
-                  {% if request.path == '/' %}
-                  active
-                  {% endif %}
-                "
+                class="nav-link {% if request.path == '/' %} active {% endif %}"
                 style="color: aqua"
                 href="/"
                 >Home</a
@@ -101,22 +104,14 @@
             {% if user.is_authenticated %}
             <li class="nav-item">
               <a
-                class="nav-link text-light
-                {% if '/customer/profile/' in request.path %}
-                active 
-                {% endif %}"
+                class="nav-link text-light {% if '/customer/profile/' in request.path %} active {% endif %}"
                 href=""
-                >Hello {{user.username}} </a
-              >
+                >Hello {{user.username}}
+              </a>
             </li>
             <li class="nav-item">
               <a
-                class="
-                  nav-link
-                  {% if '/logout' in request.path %}
-                  active
-                  {% endif %}
-                "
+                class="nav-link {% if '/logout' in request.path %} active {% endif %}"
                 style="color: aqua"
                 href="/logout"
                 >Log out</a
@@ -125,12 +120,7 @@
             {% else %}
             <li class="nav-item">
               <a
-                class="
-                  nav-link
-                  {% if '/customer/signup' in request.path %}
-                  active
-                  {% endif %}
-                "
+                class="nav-link {% if '/customer/signup' in request.path %} active {% endif %}"
                 style="color: aqua"
                 href="/customer/signup"
                 >Sign up</a
@@ -138,12 +128,7 @@
             </li>
             <li class="nav-item">
               <a
-                class="
-                  nav-link
-                  {% if '/login' in request.path %}
-                  active
-                  {% endif %}
-                "
+                class="nav-link {% if '/login' in request.path %} active {% endif %}"
                 style="color: aqua"
                 href="/login"
                 >Log In</a
@@ -164,7 +149,7 @@
       {% endfor %} {% endif %}
     </div>
     <br /><br /><br />
-    <div style="min-height: 85vh;">{% block content %} {% endblock %}</div>
+    <div style="min-height: 85vh">{% block content %} {% endblock %}</div>
 
     <!-- Footer -->
     <br /><br /><br />

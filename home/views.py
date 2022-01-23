@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.contrib.auth.decorators import login_required, user_passes_test
 from product import models as PMODEL
 
 # Home view ==> if authenticated show category page else signup page
@@ -41,6 +41,7 @@ def afterlogin_view(request):
 		return HttpResponseRedirect('admn/dashboard')
 
 # category-wise product 
+@login_required(login_url='login')
 def category_home_view(request):
     categories = PMODEL.Product_category.objects.all()
     context = {
@@ -48,7 +49,8 @@ def category_home_view(request):
     }
     return render(request, 'home/home.html', context)
 
-# admin sections 
+# admin sections
+@user_passes_test(lambda u: u.is_superuser, login_url='login') 
 def admin_dash_view(request):
     products = PMODEL.Product.objects.order_by('-total_views')
     # for paginations 
